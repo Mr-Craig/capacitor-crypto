@@ -110,4 +110,27 @@ public class CryptoPlugin extends Plugin {
             call.reject("Failed to encrypt", e);
         }
     }
+
+    @PluginMethod
+    public void decrypt(PluginCall call) {
+        JSObject ret = new JSObject();
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            call.unavailable("Android Version too old!");
+            return;
+        }
+
+        String key = call.getString("key");
+        String encryptedData = call.getString("encryptedData");
+        String tag = call.getString("tag");
+        String iv = call.getString("iv");
+        
+        try {
+            String decryptedData = implementation.decrypt(key, encryptedData, tag, iv);
+            ret.put("unencryptedData", decryptedData);
+            call.resolve(ret);
+        } catch (Exception e) {
+            call.reject("Failed to encrypt", e);
+        }
+    }
 }
