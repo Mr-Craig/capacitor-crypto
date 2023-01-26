@@ -79,7 +79,7 @@ public class Crypto {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public String generateSharedSecret(String publicKeyBase64, String privateKeyBase64) throws Exception
+    public String generateSharedSecret(String publicKeyBase64, String privateKeyBase64, String saltBase64) throws Exception
     {
         byte[] publicKeyBuffer = Base64.decode(publicKeyBase64, Base64.NO_WRAP);
         byte[] privateKeyBuffer = Base64.decode(privateKeyBase64, Base64.NO_WRAP);
@@ -95,7 +95,7 @@ public class Crypto {
 
         byte[] sharedSecret = keyAgreement.generateSecret();
 
-        byte[] salt = {};
+        byte[] salt = Base64.decode(saltBase64, Base64.NO_WRAP);
         byte[] info = {};
 
         byte[] finalKey = Hkdf.computeHkdf("HMACSHA256", sharedSecret, salt, info, 32);

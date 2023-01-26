@@ -42,7 +42,7 @@ public class CryptoPlugin: CAPPlugin {
     @objc func generateSharedSecret(_ call: CAPPluginCall) {
         do
         {
-            let secretKey = try implementation.generateSharedSecret(call.getString("privateKey") ?? "", call.getString("publicKey") ?? "")
+            let secretKey = try implementation.generateSharedSecret(call.getString("privateKey") ?? "", call.getString("publicKey") ?? "", call.getString("salt") ?? "")
             
             call.resolve([
                 "sharedSecret": secretKey

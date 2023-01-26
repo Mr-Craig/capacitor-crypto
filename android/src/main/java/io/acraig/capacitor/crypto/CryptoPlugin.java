@@ -27,6 +27,7 @@ public class CryptoPlugin extends Plugin {
     {
         String privateKey = call.getString("privateKey");
         String publicKey = call.getString("publicKey");
+        String salt = call.getString("salt");
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             call.unavailable("Android Version too old!");
@@ -35,7 +36,7 @@ public class CryptoPlugin extends Plugin {
 
         try
         {
-            String sharedSecret = implementation.generateSharedSecret(publicKey, privateKey);
+            String sharedSecret = implementation.generateSharedSecret(publicKey, privateKey, salt);
 
             JSObject ReturnValue = new JSObject();
             ReturnValue.put("sharedSecret", sharedSecret);

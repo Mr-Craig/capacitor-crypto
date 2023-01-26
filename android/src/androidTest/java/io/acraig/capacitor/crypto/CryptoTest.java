@@ -50,8 +50,10 @@ public class CryptoTest {
         String[] BobKeys = implementation.generateKeyPair();
         String[] AliceKeys = implementation.generateKeyPair();
 
-        String AliceSecret = implementation.generateSharedSecret(BobKeys[Crypto.ARRAY_PUBLIC_KEY], AliceKeys[Crypto.ARRAY_PRIVATE_KEY]);
-        String BobSecret = implementation.generateSharedSecret(AliceKeys[Crypto.ARRAY_PUBLIC_KEY], BobKeys[Crypto.ARRAY_PRIVATE_KEY]);
+        String salt = implementation.generateRandomBytes(16);
+
+        String AliceSecret = implementation.generateSharedSecret(BobKeys[Crypto.ARRAY_PUBLIC_KEY], AliceKeys[Crypto.ARRAY_PRIVATE_KEY], salt);
+        String BobSecret = implementation.generateSharedSecret(AliceKeys[Crypto.ARRAY_PUBLIC_KEY], BobKeys[Crypto.ARRAY_PRIVATE_KEY], salt);
 
         assertEquals(AliceSecret, BobSecret);
     }
@@ -63,8 +65,10 @@ public class CryptoTest {
         String[] BobKeys = implementation.generateKeyPair();
         String[] AliceKeys = implementation.generateKeyPair();
 
-        String AliceSecret = implementation.generateSharedSecret(BobKeys[Crypto.ARRAY_PUBLIC_KEY], AliceKeys[Crypto.ARRAY_PRIVATE_KEY]);
-        String BobSecret = implementation.generateSharedSecret(AliceKeys[Crypto.ARRAY_PUBLIC_KEY], BobKeys[Crypto.ARRAY_PRIVATE_KEY]);
+        String salt = implementation.generateRandomBytes(16);
+
+        String AliceSecret = implementation.generateSharedSecret(BobKeys[Crypto.ARRAY_PUBLIC_KEY], AliceKeys[Crypto.ARRAY_PRIVATE_KEY], salt);
+        String BobSecret = implementation.generateSharedSecret(AliceKeys[Crypto.ARRAY_PUBLIC_KEY], BobKeys[Crypto.ARRAY_PRIVATE_KEY], salt);
 
         String Text = "Hello, Testing!";
 

@@ -13,7 +13,7 @@ import CryptoKit
         return [newKey.publicKey.derRepresentation.base64EncodedString(), newKey.derRepresentation.base64EncodedString()];
     }
     
-    @objc public func generateSharedSecret(_ privateKey: String, _ publicKey: String) throws -> String {
+    @objc public func generateSharedSecret(_ privateKey: String, _ publicKey: String, _ salt : String) throws -> String {
         guard let privateKeyBytes = Data(base64Encoded: privateKey) else {
             throw NSError(domain: "Decoding Private Key B64", code: 0);
         }
@@ -22,12 +22,16 @@ import CryptoKit
             throw NSError(domain: "Decoding Public Key B64", code: 0);
         }
         
+        guard let saltBytes = Data(base64Encoded: salt) else {
+            throw NSError(domain: "Decoding Salt", code: 0);
+        }
+        
         let privateKeyDER = try CryptoKit.P256.KeyAgreement.PrivateKey(derRepresentation: privateKeyBytes);
         let publicKeyDER = try CryptoKit.P256.KeyAgreement.PublicKey(derRepresentation: publicKeyBytes);
             
         let sharedSecret = try privateKeyDER.sharedSecretFromKeyAgreement(with: publicKeyDER);
             
-        let finalSecret = sharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: Data(), sharedInfo: Data(), outputByteCount: 32);
+        let finalSecret = sharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: Data(), sharedInfo: saltBytes, outputByteCount: 32);
             
         return finalSecret.withUnsafeBytes {
             return Data(Array($0)).base64EncodedString()

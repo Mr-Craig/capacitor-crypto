@@ -47,8 +47,10 @@ class CryptoTests: XCTestCase {
         let BobKeys = implementation.generateKeyPair();
         let AliceKeys = implementation.generateKeyPair();
         
-        let BobSharedSecret = try! implementation.generateSharedSecret(BobKeys.lastObject as! String, AliceKeys.firstObject as! String);
-        let AliceSharedSecret = try! implementation.generateSharedSecret(AliceKeys.lastObject as! String, BobKeys.firstObject as! String);
+        let Salt = try implementation.generateRandomBytes(16);
+        
+        let BobSharedSecret = try! implementation.generateSharedSecret(BobKeys.lastObject as! String, AliceKeys.firstObject as! String, Salt);
+        let AliceSharedSecret = try! implementation.generateSharedSecret(AliceKeys.lastObject as! String, BobKeys.firstObject as! String, Salt);
             
         XCTAssertEqual(BobSharedSecret, AliceSharedSecret);
     }
@@ -59,8 +61,10 @@ class CryptoTests: XCTestCase {
         let BobKeys = implementation.generateKeyPair();
         let AliceKeys = implementation.generateKeyPair();
         
-        let BobSharedSecret = try! implementation.generateSharedSecret(BobKeys.lastObject as! String, AliceKeys.firstObject as! String);
-        let AliceSharedSecret = try! implementation.generateSharedSecret(AliceKeys.lastObject as! String, BobKeys.firstObject as! String);
+        let Salt = try implementation.generateRandomBytes(16);
+        
+        let BobSharedSecret = try! implementation.generateSharedSecret(BobKeys.lastObject as! String, AliceKeys.firstObject as! String, Salt);
+        let AliceSharedSecret = try! implementation.generateSharedSecret(AliceKeys.lastObject as! String, BobKeys.firstObject as! String, Salt);
         
         let testEncryptionString = "Hello, Testing!";
         
