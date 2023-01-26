@@ -124,7 +124,7 @@ public class CryptoPlugin extends Plugin {
         String encryptedData = call.getString("encryptedData");
         String tag = call.getString("tag");
         String iv = call.getString("iv");
-        
+
         try {
             String decryptedData = implementation.decrypt(key, encryptedData, tag, iv);
             ret.put("unencryptedData", decryptedData);

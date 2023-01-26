@@ -1,0 +1,105 @@
+{
+  "api": {
+    "name": "CryptoPlugin",
+    "slug": "cryptoplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "echo",
+        "signature": "(options: { value: string; }) => Promise<{ value: string; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: string; }"
+          }
+        ],
+        "returns": "Promise<{ value: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "echo"
+      },
+      {
+        "name": "generateKeyPair",
+        "signature": "() => Promise<{ publicKey: string; privateKey: string; }>",
+        "parameters": [],
+        "returns": "Promise<{ publicKey: string; privateKey: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "generatekeypair"
+      },
+      {
+        "name": "generateSharedSecret",
+        "signature": "(options: { privateKey: string; publicKey: string; salt: string; }) => Promise<{ sharedSecret: string; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ privateKey: string; publicKey: string; salt: string; }"
+          }
+        ],
+        "returns": "Promise<{ sharedSecret: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "generatesharedsecret"
+      },
+      {
+        "name": "generateRandomBytes",
+        "signature": "(options: { count: number; }) => Promise<{ bytesBase64: string; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ count: number; }"
+          }
+        ],
+        "returns": "Promise<{ bytesBase64: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "generaterandombytes"
+      },
+      {
+        "name": "encrypt",
+        "signature": "(options: { key: string; data: string; }) => Promise<{ encryptedData: string; tag: string; iv: string; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ key: string; data: string; }"
+          }
+        ],
+        "returns": "Promise<{ encryptedData: string; tag: string; iv: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "encrypt"
+      },
+      {
+        "name": "decrypt",
+        "signature": "(options: { key: string; encryptedData: string; tag: string; iv: string; }) => Promise<{ unencryptedData: string; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ key: string; encryptedData: string; tag: string; iv: string; }"
+          }
+        ],
+        "returns": "Promise<{ unencryptedData: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "decrypt"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}
