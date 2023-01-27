@@ -17,5 +17,6 @@ export interface CryptoPlugin {
   encrypt(options: {key: string, data: string}) : Promise<{ encryptedData: string, tag: string, iv: string }>;
   decrypt(options: {key: string, encryptedData: string, tag: string, iv: string}) : Promise<{unencryptedData: string}>;
 
+  // SHA-512 hashing function, returns hex string
   hash(options: {data: string}) : Promise<{hash: string}>;
 }

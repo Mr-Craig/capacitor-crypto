@@ -94,6 +94,22 @@
         "docs": "",
         "complexTypes": [],
         "slug": "decrypt"
+      },
+      {
+        "name": "hash",
+        "signature": "(options: { data: string; }) => Promise<{ hash: string; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ data: string; }"
+          }
+        ],
+        "returns": "Promise<{ hash: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "hash"
       }
     ],
     "properties": []

@@ -36,4 +36,9 @@ export interface CryptoPlugin {
     }): Promise<{
         unencryptedData: string;
     }>;
+    hash(options: {
+        data: string;
+    }): Promise<{
+        hash: string;
+    }>;
 }

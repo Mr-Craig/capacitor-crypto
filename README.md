@@ -19,6 +19,7 @@ npx cap sync
 * [`generateRandomBytes(...)`](#generaterandombytes)
 * [`encrypt(...)`](#encrypt)
 * [`decrypt(...)`](#decrypt)
+* [`hash(...)`](#hash)
 
 </docgen-index>
 
@@ -107,6 +108,21 @@ decrypt(options: { key: string; encryptedData: string; tag: string; iv: string; 
 | **`options`** | <code>{ key: string; encryptedData: string; tag: string; iv: string; }</code> |
 
 **Returns:** <code>Promise&lt;{ unencryptedData: string; }&gt;</code>
+
+--------------------
+
+
+### hash(...)
+
+```typescript
+hash(options: { data: string; }) => Promise<{ hash: string; }>
+```
+
+| Param         | Type                           |
+| ------------- | ------------------------------ |
+| **`options`** | <code>{ data: string; }</code> |
+
+**Returns:** <code>Promise&lt;{ hash: string; }&gt;</code>
 
 --------------------
 

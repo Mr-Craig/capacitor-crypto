@@ -129,6 +129,16 @@ class CryptoWeb extends core.WebPlugin {
             unencryptedData: new TextDecoder().decode(unencryptedData)
         };
     }
+    async hash(options) {
+        const dataBytes = new TextEncoder().encode(options.data);
+        const hashedBytes = await window.crypto.subtle.digest("SHA-512", dataBytes);
+        //https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string
+        const hashArray = Array.from(new Uint8Array(hashedBytes)); // convert buffer to byte array
+        const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
+        return {
+            hash: hashHex
+        };
+    }
 }
 
 var web = /*#__PURE__*/Object.freeze({

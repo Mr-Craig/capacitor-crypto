@@ -38,4 +38,9 @@ export declare class CryptoWeb extends WebPlugin implements CryptoPlugin {
     }): Promise<{
         unencryptedData: string;
     }>;
+    hash(options: {
+        data: string;
+    }): Promise<{
+        hash: string;
+    }>;
 }
