@@ -10,4 +10,5 @@ CAP_PLUGIN(CryptoPlugin, "Crypto",
            CAP_PLUGIN_METHOD(generateRandomBytes, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(encrypt, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(decrypt, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(hash, CAPPluginReturnPromise);
 )

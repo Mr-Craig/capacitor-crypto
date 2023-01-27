@@ -113,6 +113,22 @@ public class CryptoPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void hash(PluginCall call) {
+        JSObject ret = new JSObject();
+
+        String data = call.getString("data");
+
+        try {
+            String hashedMsg = implementation.hash(data);
+
+            ret.put("hash", hashedMsg);
+            call.resolve(ret);
+        } catch (Exception e) {
+            call.reject("Failed to encrypt", e);
+        }
+    }
+
+    @PluginMethod
     public void decrypt(PluginCall call) {
         JSObject ret = new JSObject();
 
@@ -131,7 +147,7 @@ public class CryptoPlugin extends Plugin {
             ret.put("unencryptedData", decryptedData);
             call.resolve(ret);
         } catch (Exception e) {
-            call.reject("Failed to encrypt", e);
+            call.reject("Failed to decrypt", e);
         }
     }
 }

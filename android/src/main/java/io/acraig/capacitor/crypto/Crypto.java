@@ -12,6 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -157,5 +158,20 @@ public class Crypto {
         ret[ENCRYPT_IV] = Base64.encodeToString(iv, Base64.NO_WRAP);
 
         return ret;
+    }
+
+    public String hash(String data) throws Exception {
+        byte[] dataBytes = data.getBytes(StandardCharsets.UTF_8);
+        MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
+
+        byte[] hashedBytes = messageDigest.digest(dataBytes);
+
+        // https://stackoverflow.com/a/46510436
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < hashedBytes.length; i++) {
+            sb.append(Integer.toString((hashedBytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+
+        return sb.toString();
     }
 }

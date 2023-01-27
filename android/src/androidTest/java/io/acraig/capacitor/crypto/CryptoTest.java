@@ -107,4 +107,16 @@ public class CryptoTest {
 
         assertEquals(DecryptedResponse, "Hello, Testing!");
     }
+
+    @Test
+    public void testHash() throws Exception {
+        Crypto implementation = new Crypto();
+
+        String hashedString = "Hello, Testing!";
+        String hashedResult = "ecf39aff4e3f57f1fdb82e161fd4e6d622d5cbc3a06bbc1c51b93f87b6a4e2c272da2787b6c511cd071dd7add45e87d18a118e501fba39709b1bec931f26eec0";
+
+        String hashTest = implementation.hash(hashedString);
+
+        assertEquals(hashedResult, hashTest);
+    }
 }

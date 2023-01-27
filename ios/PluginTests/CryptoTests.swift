@@ -101,4 +101,14 @@ class CryptoTests: XCTestCase {
         
         XCTAssertEqual(decryptedString, "Hello, Testing!");
     }
+    
+    func testHashing() throws {
+        let hashedString = "Hello, Testing!"
+        let hashedResult = "ecf39aff4e3f57f1fdb82e161fd4e6d622d5cbc3a06bbc1c51b93f87b6a4e2c272da2787b6c511cd071dd7add45e87d18a118e501fba39709b1bec931f26eec0";
+        let implementation = Crypto();
+        
+        let hashTest = try! implementation.hash(hashedString);
+        
+        XCTAssertEqual(hashedResult, hashTest);
+    }
 }

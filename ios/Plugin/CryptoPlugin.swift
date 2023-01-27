@@ -102,4 +102,20 @@ public class CryptoPlugin: CAPPlugin {
             call.reject("NSError: \(error.domain) \(error.localizedDescription) \(error.localizedFailureReason ?? "")");
         }
     }
+    @objc func hash(_ call: CAPPluginCall) 
+    {
+        do {
+            guard let data = call.options["data"] as? String else {
+                call.reject("Must Provide Data");
+                return;
+            }
+            
+            let hash = try implementation.hash(data);
+            call.resolve([
+                "hash": hash
+            ]);
+        } catch let error as NSError {
+            call.reject("NSError: \(error.domain) \(error.localizedDescription) \(error.localizedFailureReason ?? "")");
+        }
+    }
 }

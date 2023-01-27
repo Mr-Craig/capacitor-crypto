@@ -90,6 +90,23 @@ import CryptoKit
         return String(bytes: unencryptedBytes, encoding: .utf8)!;
     }
     
+    @objc public func hash(_ data: String) throws -> String {
+        guard let dataBytes = data.data(using: .utf8) else {
+            throw NSError(domain: "Can't decode data to bytes", code: 0);
+        }
+        
+        let hashResult = CryptoKit.SHA512.hash(data: dataBytes);
+        
+        //https://stackoverflow.com/a/62465044
+        return hashResult.map {
+            if $0 < 16 {
+                return "0" + String($0, radix: 16, uppercase: false)
+            } else {
+                return String($0, radix: 16, uppercase: false)
+            }
+        }.joined()
+    }
+    
     @objc public func generateRandomBytes(_ count: Int) throws -> String {
         var bytes = [Int8](repeating: 0, count: count)
         let status = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)
