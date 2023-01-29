@@ -31,7 +31,7 @@ import CryptoKit
             
         let sharedSecret = try privateKeyDER.sharedSecretFromKeyAgreement(with: publicKeyDER);
             
-        let finalSecret = sharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: Data(), sharedInfo: saltBytes, outputByteCount: 32);
+        let finalSecret = sharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: saltBytes, sharedInfo: Data(), outputByteCount: 32);
             
         return finalSecret.withUnsafeBytes {
             return Data(Array($0)).base64EncodedString()

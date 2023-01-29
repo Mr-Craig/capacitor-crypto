@@ -33,7 +33,6 @@ export class CryptoWeb extends WebPlugin {
         }
         let privateKeyBuffer = Uint8Array.from(atob(options.privateKey), x => x.charCodeAt(0));
         let publicKeyBuffer = Uint8Array.from(atob(options.publicKey), x => x.charCodeAt(0));
-        this.unavailable(publicKeyBuffer.toString() + " " + privateKeyBuffer.toString());
         let privateKeyImported = await window.crypto.subtle.importKey("pkcs8", privateKeyBuffer, {
             name: "ECDH",
             namedCurve: "P-256"

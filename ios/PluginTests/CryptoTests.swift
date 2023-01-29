@@ -66,7 +66,7 @@ class CryptoTests: XCTestCase {
         let BobSharedSecret = try! implementation.generateSharedSecret(BobKeys.lastObject as! String, AliceKeys.firstObject as! String, Salt);
         let AliceSharedSecret = try! implementation.generateSharedSecret(AliceKeys.lastObject as! String, BobKeys.firstObject as! String, Salt);
         
-        let testEncryptionString = "Hello, Testing!";
+        let testEncryptionString = "Hello, Testing! 🔥🔥🔥🔥";
         
         let BobEncrypted = try! implementation.encrypt(BobSharedSecret, testEncryptionString);
         let AliceDecrypted = try! implementation.decrypt(AliceSharedSecret, BobEncrypted[0] as! String, BobEncrypted[1] as! String, BobEncrypted[2] as! String);
@@ -76,12 +76,26 @@ class CryptoTests: XCTestCase {
     
     func testWebDecryption() throws {
         // output from web
+        let webPrivateKey = "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgohwy/7Hl57p3GeZWy3Ae4pGlNqrwGrvGvlLsiEw8R++hRANCAAT6jwWlr8QzQeFb/7kqgqpj+IVADzek58GiUJ9xJRft0Q9bIyZcPHN0WLxeZilCKq+doMSVAuruZSHxP5hzG/aR";
+        let webPublicKey = "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE+o8Fpa/EM0HhW/+5KoKqY/iFQA83pOfBolCfcSUX7dEPWyMmXDxzdFi8XmYpQiqvnaDElQLq7mUh8T+Ycxv2kQ==";
+        
+        let iosPublicKey = "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEzwC7EpEJlrgEaSLYbLDcTGvCj09vT4FBeKv6/VizgBMvgORq8Yd8CgcDhLL49lIrMNm5/1nVyrDQU/IpMtj1CA==";
+        let iosPrivateKey = "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgGPLJtAC1onmm2WeeHZye5d7m9wOp+wFfj78uGVEI9eShRANCAATPALsSkQmWuARpIthssNxMa8KPT29PgUF4q/r9WLOAEy+A5Grxh3wKBwOEsvj2Uisw2bn/WdXKsNBT8iky2PUI";
+        
+        let salt = "aZhr5Op9wI1i8rcmrcJCCg==";
+        
+        let webSharedSecret = "MfHcVKelgsXEmPdy5vKfeogV3FxoyBIvyefyG2Q+Pxw=";
+        
+        let implementation = Crypto();
+        
+        let iosSharedSecret = try! implementation.generateSharedSecret(iosPrivateKey, webPublicKey, salt);
+        
+        XCTAssertEqual(webSharedSecret, iosSharedSecret);
+        
         let sharedSecret = "NLSOGZX4BXhx32tG9UGMs9uS9Gwfrb4vkIyxdMQQpXw=";
         let encryptedData = "c9OhmsuPwBTV7uEbEO+D";
         let tag = "fRZ4V/m7P4GSc/WZe2pNnA==";
         let iv = "eAGFKX/vo8AlukxK";
-        
-        let implementation = Crypto();
         
         let decryptedString = try! implementation.decrypt(sharedSecret, encryptedData, tag, iv);
         
