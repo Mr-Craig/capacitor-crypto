@@ -89,7 +89,7 @@ class CryptoWeb extends core.WebPlugin {
         const importedKey = await window.crypto.subtle.importKey("raw", keyBytes, {
             "name": "AES-GCM"
         }, false, ["encrypt"]);
-        const dataBytes = Uint8Array.from(options.data, x => x.charCodeAt(0));
+        const dataBytes = new TextEncoder().encode(options.data);
         const encryptedBytesandTag = await window.crypto.subtle.encrypt({
             name: "AES-GCM",
             iv: ivBytes,

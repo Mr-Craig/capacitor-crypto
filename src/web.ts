@@ -106,7 +106,7 @@ export class CryptoWeb extends WebPlugin implements CryptoPlugin {
       "name": "AES-GCM"
     }, false, ["encrypt"]);
 
-    const dataBytes = Uint8Array.from(options.data, x => x.charCodeAt(0));
+    const dataBytes = new TextEncoder().encode(options.data);
 
     const encryptedBytesandTag = await window.crypto.subtle.encrypt({
       name: "AES-GCM",

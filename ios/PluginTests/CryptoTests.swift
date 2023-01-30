@@ -76,15 +76,14 @@ class CryptoTests: XCTestCase {
     
     func testWebDecryption() throws {
         // output from web
-        let webPrivateKey = "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgohwy/7Hl57p3GeZWy3Ae4pGlNqrwGrvGvlLsiEw8R++hRANCAAT6jwWlr8QzQeFb/7kqgqpj+IVADzek58GiUJ9xJRft0Q9bIyZcPHN0WLxeZilCKq+doMSVAuruZSHxP5hzG/aR";
-        let webPublicKey = "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE+o8Fpa/EM0HhW/+5KoKqY/iFQA83pOfBolCfcSUX7dEPWyMmXDxzdFi8XmYpQiqvnaDElQLq7mUh8T+Ycxv2kQ==";
         
-        let iosPublicKey = "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEzwC7EpEJlrgEaSLYbLDcTGvCj09vT4FBeKv6/VizgBMvgORq8Yd8CgcDhLL49lIrMNm5/1nVyrDQU/IpMtj1CA==";
-        let iosPrivateKey = "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgGPLJtAC1onmm2WeeHZye5d7m9wOp+wFfj78uGVEI9eShRANCAATPALsSkQmWuARpIthssNxMa8KPT29PgUF4q/r9WLOAEy+A5Grxh3wKBwOEsvj2Uisw2bn/WdXKsNBT8iky2PUI";
+        let webPublicKey = "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAETQNcB2pK5RRlrh2UofFlyQgM4X+HqSqOW4o9vCReYKX2JSiGbBTR+qSYieMmnHxAmlzqmgPUwExMW2J707zu7g==";
         
-        let salt = "aZhr5Op9wI1i8rcmrcJCCg==";
+        let iosPrivateKey = "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgcrPXYr0+SzW1xeJlOrQpCcpVTuKdg221x2dZaTO0hgyhRANCAARfi/IbkbOF3vsuaoB87KudS62GhLxWpnE3Z08eF2gFjVi5yjHJ7eR2Oi/zAq7/6VGKIsUEsVNnsRVNP3EeNZTY";
         
-        let webSharedSecret = "MfHcVKelgsXEmPdy5vKfeogV3FxoyBIvyefyG2Q+Pxw=";
+        let salt = "ZJr1G2YFVWOUTOQFzgTDsA==";
+        
+        let webSharedSecret = "y0iEuYS8JAZJB9tPHVS+qfdMrj/pROYPG4uq8XChYT0=";
         
         let implementation = Crypto();
         
